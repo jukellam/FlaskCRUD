@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime  
 
 app = Flask(__name__)
+app._static_folder = ''
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)  
 
@@ -31,7 +32,6 @@ def index():
             return redirect('/')
         except:
             return "There was a problem adding new stuff."
-    
     else:
         groceries = Grocery.query.order_by(Grocery.created_at).all()
         return render_template('index.html', groceries=groceries)
