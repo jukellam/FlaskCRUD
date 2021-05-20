@@ -5,9 +5,9 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime  
 
 app = Flask(__name__)
-app._static_folder = ''
+app._static_folder = '/templates/static'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-db = SQLAlchemy(app)  
+db = SQLAlchemy(app)
 
 
 class Grocery(db.Model):
@@ -34,7 +34,7 @@ def index():
             return "There was a problem adding new stuff."
     else:
         groceries = Grocery.query.order_by(Grocery.created_at).all()
-        return render_template('index.html', groceries=groceries)
+        return render_template('index2.html', groceries=groceries)
 
 @app.route('/delete/<int:id>')
 def delete(id):
